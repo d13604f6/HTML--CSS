@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <base target="_blank">
+  <style>
+/* latin */
+@font-face {
+  font-family: 'Comic Neue';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/4UaHrEJDsxBrF37olUeD96rp57F2IwM.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin */
+@font-face {
+  font-family: 'Lexend Deca';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/K2FifZFYk-dHSE0UPPuwQ7CrD94i-NCKm-U48M1wqxnDirZPl3v-.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --fg: #000; /* foreground  */
+  --bg: #fff; /* background  */
+  --bd: #000; /* border  */
+  --lk: #006fa5; /* link */
+  --lkv: #d33bf0; /* link visited */
+  --hg: #ffff81; /* highlight  */
+}
+html {
+  overflow: overlay;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 30px auto 0 auto;
+  padding: 10px;
+  position: relative;
+
+  color: var(--fg);
+  border-color: var(--bd);
+  background-color: var(--bg);
+}
+body[data-mode$="dark"] {
+  --lk: #0096de;
+}
+body[data-mode="light"] {
+  color-scheme: light;
+  --fg: #222;
+  --bd: #222;
+  --bg: whitesmoke;
+}
+body[data-mode="dark"] {
+  color-scheme: dark;
+  --fg: #eee;
+  --bd: #eee;
+  --bg: #333;
+}
+body[data-mode="sepia"] {
+  color-scheme: light;
+  --fg: #5b4636;
+  --bd: #5b4636;
+  --bg: #f4ecd8;
+}
+body[data-mode="solarized-light"] {
+  color-scheme: light;
+  --fg: #586e75;
+  --bd: #586e75;
+  --bg: #fdf6e3;
+}
+body[data-mode="nord-light"] {
+  color-scheme: light;
+  --fg: #2e3440;
+  --bd: #2e3440;
+  --bg: #e5e9f0;
+}
+body[data-mode="groove-dark"] {
+  color-scheme: dark;
+  --fg: #cec4ac;
+  --bd: #cec4ac;
+  --bg: #282828;
+}
+body[data-mode="solarized-dark"] {
+  color-scheme: dark;
+  --fg: #839496;
+  --bd: #839496;
+  --bg: #002b36;
+}
+body[data-mode="nord-dark"] {
+  color-scheme: dark;
+  --fg: #e5e9f0;
+  --bd: #e5e9f0;
+  --bg: #2e3440;
+}
+
+@media print {
+  body[data-mode] {
+    --fg: #000;
+    --bd: #000;
+    --bg: #fff;
+
+    width: unset;
+    padding: 0;
+    margin: 0;
+  }
+}
+body[data-loaded=true] {
+  
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+img:not([width])[src$=".svg"] {
+  max-width: 100px;
+}
+body[data-images=false] canvas,
+body[data-images=false] svg,
+body[data-images=false] img {
+  display: none;
+}
+svg:not([width]):not([height]) {
+  max-width: 25vmin;
+}
+a {
+  color: var(--lk);
+  text-decoration: none;
+}
+a:visited {
+  color: var(--lkv);
+}
+
+hr {
+  background-color: var(--bd);
+  height: 1px;
+  border: 0;
+}
+#reader-domain {
+  font-family: Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  border-bottom-color: currentcolor;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  display: inline-block;
+  direction: ltr;
+}
+#reader-domain > span:first-child {
+  font-size: 1.1em;
+}
+#reader-domain > span:last-child {
+  font-size: 0.8em;
+}
+#reader-title {
+  font-size: 1.6em;
+  line-height: 1.25em;
+  width: 100%;
+  margin: 20px 0;
+  padding: 0;
+}
+#reader-credits,
+#doi,
+#published-time,
+#reader-estimated-time {
+  font-size: 0.85em;
+  line-height: 1.48em;
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+#reader-credits:not(:empty)::after {
+  content: ' ⋮ ';
+}
+#published-time:not(:empty)::before {
+  content: ' ⋮ ';
+}
+#doi-json {
+  overflow: hidden;
+}
+#doi-json code {
+  overflow: auto;
+  max-height: 400px;
+}
+#published-time:empty,
+#reader-credits:empty {
+  display: none;
+}
+mark.hghlght {
+  background-color: var(--hg);
+}
+body:not([data-columns="1"]) .page :is(h1, h2) {
+  column-span: all;
+  background-color: rgba(125, 125, 125, 0.1);
+  padding: 10px;
+}
+.hidden {
+  display: none;
+}
+</style>
+  <style id="user-css">body {
+  padding-bottom: 64px;
+}
+pre {
+  white-space: pre-wrap;
+}
+pre code {
+  background-color: #eff0f1;
+  color: #393318;
+  font-family: monospace;
+  display: block;
+  padding: 5px 10px;
+}
+body[data-mode="dark"] pre code {
+  background-color: #585858;
+  color: #e8e8e8;
+}
+
+/* CSS for sans-serif fonts */
+body[data-font=sans-serif] {}
+/* CSS for serif fonts */
+body[data-font=serif] {}
+
+/* CSS for "sepia" theme */
+body[data-mode=sepia] {}
+/* CSS for "light" theme */
+body[data-mode=light] {}
+/* CSS for "dark" theme */
+body[data-mode=dark] {}</style>
+<title>⚡ Maquetado Básico de la Página</title><title>⚡ Maquetado Básico de la Página :: Reader View</title></head>
+<body tabindex="1" data-images="true" data-mode="sepia" data-font="sans-serif" data-columns="1" data-loaded="true">
+  <span></span> <!-- for IntersectionObserver -->
+  <a id="reader-domain" href="https://app.egg.live/content/step/6MIJqzNOBdpyM0cVqk9KhK">
+    <span>app.egg.live</span>
+    <span>/content/step/6MIJqzNOBdpyM0cVqk9KhK</span>
+  </a>
+  <h1 dir="auto" id="reader-title">⚡ Maquetado Básico de la Página</h1>
+  <span dir="auto" id="reader-credits"></span>
+  <span dir="auto" id="reader-estimated-time">14-18 minutes</span>
+  <span dir="auto" id="published-time"></span>
+  <hr>
+  <div id="readability-page-1" class="page"><div><header><nav></nav></header><h2><u>🚀 Introducción</u></h2><p>En esta sección, nos enfocaremos en establecer el maquetado básico de la página principal de nuestra tienda virtual. Esta etapa es crucial para comprender cómo se estructurará y distribuirá el contenido en nuestro sitio. </p><p>Utilizaremos placeholders y bordes de colores para delinear visualmente las áreas principales, permitiendo así una clara visualización del diseño general antes de proceder con detalles más específicos. </p><p>Esta aproximación nos ayudará a identificar de manera temprana cualquier desafío de diseño y a asegurarnos de que la estructura de la página sea intuitiva y accesible para nuestros usuarios y a la vez respetando el prototipo provisto.</p><hr><h2><u>🧰 Material requerido</u></h2><ul><li><p><a href="https://www.figma.com/downloads/" target="_blank" rel="noopener noreferrer" title="Figma">Figma</a></p></li><li><p><a href="https://drive.google.com/file/d/1SP-oUfsQUj16LuAg5bOL8sITzsS3Vj6S/view?usp=drive_link" target="_blank" rel="noopener noreferrer" title="Prototipo de la tienda en Figma">Prototipo de la tienda en Figma</a></p></li><li><p><a href="https://drive.google.com/file/d/1D1ZFUw1JtM5dXluwxYK6BDSggYGNdzPK/view?usp=drive_link" target="_blank" rel="noopener noreferrer" title="Prototipo JPG">Prototipo JPG</a></p></li></ul><hr><h3>📑 Actividades</h3><h4>1. Creando el archivo HTML</h4><p>En el paso anterior configuramos nuestro editor o IDE. Una vez que tengas tu editor o IDE listo, procede a crear un nuevo archivo dentro de la carpeta previamente descargada, en la carpeta starter. Ponle el nombre index.html. Es el nombre por defecto para la página de inicio de un proyecto. Este archivo será el punto de entrada a tu tienda virtual, donde implementarás los placeholders y bordes para el maquetado.</p><p>En tu archivo index.html, comienza escribiendo la estructura básica de un documento HTML. Esto incluye la declaración de tipo de documento (DOCTYPE), la etiqueta <code>&lt;html&gt;</code> con los atributos de lenguaje correspondientes, la sección <code>&lt;head&gt;</code> que contiene la información del meta y el título de la página, y finalmente, la sección <code>&lt;body&gt;</code>, donde irá todo el contenido visible de tu página.</p><pre><code><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;title&gt;Tienda Virtual&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    Aquí desarrollaremos la estructura de nuestra tienda virtual.
+  &lt;/body&gt;
+&lt;/html&gt;</code>
+</code></pre><p>En esta etapa, no te preocupes por añadir estilos detallados o contenido específico. La idea es establecer una estructura básica que te permita visualizar la disposición general de la página según el prototipo provisto. Los detalles más finos y estilos específicos se añadirán en pasos posteriores.</p><p>Una vez que tu archivo index.html esté configurado con esta estructura básica, habrás completado el primer paso crucial hacia el desarrollo de la página principal de tu tienda virtual.</p><blockquote><p>Recuerda siempre guardar tus cambios a medida que avances en tú proyecto.</p></blockquote><h4>2. Creando la estructura principal</h4><p>Después de haber establecido el archivo index.html con la estructura básica del documento HTML, el siguiente paso es crear la estructura principal de la página. En este paso, definiremos las secciones clave que formarán el esqueleto de tu tienda virtual. Utilizaremos las etiquetas semánticas de HTML para organizar el contenido de manera lógica y accesible.</p><ol><li><p><b>Definir la Cabecera (Header):</b> La etiqueta <code>&lt;header&gt;</code> de tu documento HTML será el área donde colocarás elementos como el logotipo de tu tienda, la barra de navegación o cualquier otro contenido que consideres pertinente para la cabecera de tu sitio. Piensa en esta sección como la primera impresión que tendrán los usuarios al visitar tu tienda.</p></li><li><p><b>Agregar Secciones Auxiliares (Sections):</b> Utiliza la etiqueta <code>&lt;section&gt;</code> para crear distintas secciones auxiliares dentro de tu página. Estas pueden incluir banners promocionales, información adicional sobre productos, o cualquier otro elemento que complemente la experiencia de compra en tu tienda. En nuestro caso, la utilizaremos para crear un área publicitaria destacada con el nombre de la categoría de productos visibles.</p></li><li><p><b>Establecer la Sección Principal (Main):</b> La etiqueta <code>&lt;main&gt;</code> es el corazón de tu página. Aquí se ubicará el contenido principal de tu tienda, como la exhibición de productos, descripciones, y cualquier otra información relevante para tus usuarios. Asegúrate de que esta sección sea clara y atractiva, ya que aquí es donde los usuarios pasarán la mayor parte del tiempo.</p></li><li><p><b>Incluir el Pie de Página (Footer): </b>Finalmente, la etiqueta <code>&lt;footer&gt;</code> es donde incluirás información como enlaces a tus redes sociales, información de contacto, términos y condiciones, entre otros. El pie de página es un elemento importante para brindar confianza y opciones de contacto adicionales a tus usuarios.</p></li></ol><p>Una vez hayas añadido estas etiquetas a tu documento HTML, tendrás una estructura principal sólida para tu tienda virtual. Asegúrate de guardar los cambios en tu archivo index.html. En los próximos pasos, nos enfocaremos en delimitar los límites de nuestros elementos HTML para diagramar la estructura de contenidos.</p><p>El código de tu sitio debería verse así:</p><pre><code><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;title&gt;Tienda Virtual&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;header&gt;&lt;/header&gt;
+    &lt;section&gt;&lt;/section&gt;
+    &lt;main&gt;&lt;/main&gt;
+    &lt;footer&gt;&lt;/footer&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code>
+</code></pre><h4>3. Delimitando nuestro layout</h4><p>Ahora que hemos creado la estructura principal de nuestra página de tienda virtual, el siguiente paso es delimitar nuestro layout utilizando propiedades de estilo en CSS. En esta fase, vamos a definir los colores de los bordes y las dimensiones de las secciones principales utilizando CSS. Además, exploraremos conceptos como los valores de color en hexadecimal y la diferencia entre las propiedades<b> </b><b><code>height</code></b> y <b><code>min-height</code></b><b>.</b></p><ol><li><p><b>Aplicando Estilos a las Secciones: </b>Dentro del <b><code>&lt;style&gt;</code></b><b> </b>en tu <b><code>&lt;head&gt;</code></b>, hemos definido los estilos para <b><code>header</code></b>, <b><code>section</code></b>, <b><code>main</code></b><b> </b>y <b><code>footer</code></b>, asignando colores a los bordes para identificar visualmente cada sección y estableciendo sus respectivas alturas. Es importante recordar que estos estilos son temporales y sirven para visualizar la estructura del layout. En las fases de desarrollo futuro, estos estilos se ajustarán para alinearlos con el diseño final.</p></li><li><p><b>Diferencia entre </b><b><code>height</code></b><b> y </b><b><code>min-height</code></b><b>: </b>Al definir las dimensiones de un elemento, podemos usar <b><code>height</code></b><b> </b>para establecer una altura fija. Por ejemplo, en <b><code>&lt;header&gt;</code></b>, hemos definido una altura de <b><code>152px</code></b>. Esto significa que el encabezado siempre tendrá esta altura, sin importar el contenido que tenga dentro. Por otro lado,<b> </b><b><code>min-height</code></b><b> </b>se utiliza para establecer la altura mínima de un elemento, pero este puede expandirse si el contenido lo requiere. En el<b> </b><b><code>&lt;footer&gt;</code></b>, hemos usado <b><code>min-height: 368px</code></b>, lo que significa que tendrá al menos esa altura, pero puede crecer si el contenido interno lo necesita. Es una propiedad útil para garantizar que sea responsivo y la adecuación del contenido.</p></li><li><p><b>Uso de Colores Hexadecimales:</b>En CSS, los colores se pueden definir utilizando diferentes sistemas, y uno de los más comunes, además de los nombres de los colores principales, es el color hexadecimal. Un color hexadecimal es una forma de representar colores en formato digital, consistiendo en un símbolo <code>#</code> seguido de 6 caracteres (números y letras de la A a la F). Por ejemplo, en el caso del <b><code>&lt;footer&gt;</code></b>, utilizamos <b><code>#009145</code></b>, que es un código específico para un tono de verde. Para obtener más información sobre los valores de color en CSS, puedes consultar la documentación de Mozilla Developer Network (MDN) sobre <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value" target="_blank" rel="noopener noreferrer" title="valores de color">valores de color</a>.</p></li><li><p><b>Uso de height: auto:</b>La propiedad height: auto; en el elemento <code>&lt;main&gt;</code> de tu HTML tiene un propósito importante en el diseño y la estructura de una página web. Al establecer <code>height: auto;</code>, estás permitiendo que la altura de este elemento se ajuste automáticamente para acomodar la cantidad de contenido que contiene. Aquí hay algunas razones clave por las que se utiliza esta propiedad:</p></li></ol><blockquote><p>Prueba modificando la cantidad de contenido dentro de la etiqueta main para ver como reacciona tu layout.</p></blockquote><p>El código de tu sitio debería verse así:</p><pre><code><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;title&gt;Tienda Virtual&lt;/title&gt;
+    &lt;style&gt;
+      header {
+        border: 1px solid red;
+        height: 152px;
+      }
+      section {
+        border: 1px solid purple;
+        height: 340px;
+      }
+      main {
+        border: 1px solid blue;
+        height: auto;
+      }
+      footer {
+        border: 1px solid #009145; /* Hexadecimal color code*/
+        min-height: 368px;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;header&gt;&lt;/header&gt;
+    &lt;section&gt;&lt;/section&gt;
+    &lt;main&gt;
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi,
+      voluptates. Quis fugit aut perspiciatis, tempora quos maxime doloremque
+      similique voluptas. Repellendus cupiditate, autem ab a vero eveniet
+      voluptatem animi excepturi!
+    &lt;/main&gt;
+    &lt;footer&gt;&lt;/footer&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code>
+</code></pre><h4>4. Agregando un contenedor a la estructura</h4><p>Tras definir la estructura básica de nuestra tienda virtual y aplicar estilos iniciales a través de CSS, el siguiente paso es incorporar un elemento clave en el diseño web: el contenedor. Este paso se centrará en cómo agregar un contenedor para mejorar la disposición y alineación del contenido en nuestra página. Este contenedor servirá como un elemento de envoltura principal para cada sección, ayudando a mantener un diseño coherente y ordenado.</p><ol><li><p><b>Creando el Contenedor en HTML:</b> Dentro de cada sección principal de nuestra página (<code>header</code>, <code>section</code>, <code>main</code>, <code>footer</code>), insertaremos un <code>&lt;div&gt;</code> con la clase <code>container</code>. Esta práctica es común en el diseño web para proporcionar un mejor control sobre cómo se muestra el contenido en diferentes dispositivos, manteniendo una consistencia visual en toda la página. Este contenedor actúa como un marco dentro del cual todo el contenido se alineará y se organizará.</p></li><li><p><b>Estilizando el Contenedor en CSS:</b> En la hoja de estilos integrada en nuestro archivo HTML, definiremos la clase <code>.container</code>. Esta clase aplicará un ancho fijo (<code>width: 1220px</code>), permitiendo que el contenido central de nuestra página no se extienda demasiado en pantallas grandes. Además, usaremos <code>margin: 0 auto</code> para centrar automáticamente el contenedor dentro de su elemento padre, y <code>border: 1px solid springgreen</code> para visualizar claramente sus límites durante la fase de desarrollo. Las propiedades de altura aseguran que el contenedor se adapte al contenido que contiene, manteniendo la consistencia del diseño.</p></li><li><p><b>Ajustando y Probando el Contenedor:</b> Una vez que hayamos implementado los contenedores en nuestra página, el siguiente paso es ajustar y probar cómo interactúan con el contenido existente. Por ejemplo, en la sección <code>&lt;main&gt;</code>, ya hemos agregado algo de texto de muestra. Observaremos cómo este texto se alinea dentro del contenedor, lo que nos da una idea clara de cómo el contenido se visualizará en el contexto del diseño general de la página.</p></li><li><p><b>Refinamiento y Personalización:</b> Finalmente, este paso no solo se trata de funcionalidad, sino también de estética y personalización. Aunque actualmente nuestro contenedor tiene un borde de color <code>springgreen</code> para fines de visualización, eventualmente querrás ajustar o eliminar este estilo para alinear con la identidad visual de tu tienda virtual. Este proceso de refinamiento es crucial para pasar de un prototipo funcional a un diseño final pulido y profesional.</p></li></ol><blockquote><p><b>Nota Importante:</b> Asegúrate de revisar y ajustar tu contenedor en diferentes tamaños de pantalla para garantizar que tu diseño sea responsivo y accesible en una variedad de dispositivos.</p></blockquote><p>Una vez completado este paso, tendrás una base sólida y flexible para continuar desarrollando y estilizando el resto de tu tienda virtual, asegurando que todo el contenido esté bien organizado y presentado de manera efectiva.</p><p>El código dentro de la etiqueta <b><code>&lt;body&gt;</code></b> debería verse del siguiente modo:</p><pre><code><code>&lt;header&gt;
+  &lt;div class="container"&gt;&lt;/div&gt;
+&lt;/header&gt;
+&lt;section&gt;
+  &lt;div class="container"&gt;&lt;/div&gt;
+&lt;/section&gt;
+&lt;main&gt;
+  &lt;div class="container"&gt;
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, voluptates.
+    Quis fugit aut perspiciatis, tempora quos maxime doloremque similique
+    voluptas. Repellendus cupiditate, autem ab a vero eveniet voluptatem animi
+    excepturi!
+  &lt;/div&gt;
+&lt;/main&gt;
+&lt;footer&gt;
+  &lt;div class="container"&gt;&lt;/div&gt;
+&lt;/footer&gt;</code>
+</code></pre><p>Por otro lado, el código dentro de tu etiqueta <b><code>&lt;style&gt;</code></b><b> </b>debería reflejar la siguiente adición:</p><pre><code><code>.container {
+  width: 1220px;
+  margin: 0 auto;
+  border: 1px solid springgreen;
+  height: inherit;
+  min-height: inherit;
+}</code>
+</code></pre><h4>5. Visualizando nuestra tienda por primera vez en el navegador</h4><p>El objetivo de este paso es realizar una primera revisión visual de nuestra tienda virtual en un navegador web. Esto nos permitirá ver cómo se traducen nuestros códigos HTML y CSS en una página web real y nos ayudará a identificar áreas que requieran ajustes o mejoras.</p><ol><li><p><b>Abrir el Archivo en un Navegador:</b>Para comenzar, necesitas abrir el archivo HTML de tu tienda virtual en un navegador web. Esto generalmente se puede hacer de dos maneras:</p><ul><li><p>Haciendo doble clic en el archivo HTML si está almacenado localmente en tu computadora. Esto abrirá automáticamente el archivo en tu navegador predeterminado.</p></li><li><p>Utilizando un editor de código con capacidades de vista previa en vivo (como Visual Studio Code con la extensión Live Server), que reflejará en tiempo real los cambios que realices en tu código.</p></li></ul></li><li><p><b>Inspección Visual:</b>Una vez abierto el archivo en el navegador, realiza una inspección visual detallada de todos los elementos de la página. Presta especial atención a cómo se han aplicado los estilos de los bordes y las dimensiones que definiste anteriormente. Asegúrate de que cada sección (header, section, main, footer) se visualice claramente con los bordes y colores especificados.</p></li><li><p><b>Haz pruebas:</b>Realiza pruebas agregando diferentes cantidades y tipos de contenidos a las distintas secciones. Puedes probar anidando elementos de otros tipos.</p></li><li><p><b>Revisar que sea Responsivo:</b>Cambia el tamaño de la ventana de tu navegador para simular diferentes tamaños de pantalla, incluyendo tablets y smartphones. Observa cómo responde el layout a estos cambios. ¿Se ajustan las secciones de manera fluida? ¿El contenido se desborda en algún punto?</p></li><li><p><b>Identificar Posibles Problemas:</b>Si notas algo que no se ve como esperabas (por ejemplo, secciones que no se alinean correctamente, colores que no coinciden, o contenido desbordado), toma nota de estos problemas. Estos serán puntos clave para trabajar en los siguientes pasos del desarrollo.</p></li><li><p><b>Captura de Pantalla (Opcional):</b>Podría ser útil tomar capturas de pantalla de la vista actual para discutir con el equipo o para tener una referencia visual de cómo se veía la página en esta etapa del desarrollo. Debería verse similar a esta:</p></li></ol><p><img src="https://images.ctfassets.net/lg4qnzuw6s7g/4JrpZsdghs7ovzAYoYQoDI/f566a00b2c6d7e8fbc5a2fcad0830091/basic_page_layout.snapshot.png" alt="basic page layout.snapshot"></p><p>Al final de este paso, deberías tener una comprensión clara de cómo se está materializando tu diseño web en un entorno real del navegador. Esta visualización inicial es fundamental para orientar las próximas fases de desarrollo, ajustando lo necesario para asegurar que el diseño final se alinee con tu visión original y las expectativas de los usuarios.</p><hr><h2>✅ Actividades finalizadas</h2><ul><li><p> Creando el archivo HTML</p></li><li><p> Creando la estructura principal</p></li><li><p> Delimitando nuestro layout</p></li><li><p> Agregando un contenedor a la estructura</p></li><li><p> Visualizando nuestra tienda por primera vez en el navegador</p></li></ul><hr><h2>💼 Información complementaria</h2><ul><li><p><a href="https://developer.mozilla.org/es/docs/Learn/HTML/Introduction_to_HTML" target="_blank" rel="noopener noreferrer" title="Introducción a HTML">Introducción a HTML</a></p></li><li><p><a href="https://developer.mozilla.org/es/docs/Learn/HTML/Introduction_to_HTML/Getting_started" target="_blank" rel="noopener noreferrer" title="Primeros pasos con HTML">Primeros pasos con HTML</a></p></li><li><p><a href="https://developer.mozilla.org/es/docs/Learn/HTML/Introduction_to_HTML/Document_and_website_structure" target="_blank" rel="noopener noreferrer" title="Estructura y documentación">Estructura y documentación</a></p></li><li><p><a href="https://developer.mozilla.org/es/docs/Learn/CSS/First_steps" target="_blank" rel="noopener noreferrer" title="Primeros pasos en CSS">Primeros pasos en CSS</a></p></li><li><p><a href="https://developer.mozilla.org/es/docs/Learn/CSS/First_steps/How_CSS_is_structured" target="_blank" rel="noopener noreferrer" title="Cómo se estructura CSS">Cómo se estructura CSS</a></p></li><li><p><a href="https://developer.mozilla.org/es/docs/Learn/CSS/Building_blocks/Selectors" target="_blank" rel="noopener noreferrer" title="Selectores CSS">Selectores CSS</a></p></li></ul></div></div>
+  <span></span> <!-- for IntersectionObserver -->
+  
+  
+  
+  
+
+
+<style id="note-styling">
+    .note {
+      position: absolute;
+      z-index: 10;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: inherit;
+      padding: 5px;
+      min-width: 32px;
+      min-height: 32px;
+    }
+    .note:focus {
+      z-index: 11;
+    }
+    .note[type="0"] {
+      background-color: #fff740;
+      color: #2c2c2d;
+    }
+    .note[type="0"]::placeholder {
+      color: #868226;
+    }
+    .note[type="1"] {
+      background-color: #feff9c;
+      color: #2c2c2d;
+    }
+    .note[type="1"]::placeholder {
+      color: #6d6d3d;
+    }
+    .note[type="2"] {
+      background-color: #ff65a3;
+      color: #2c2c2d;
+    }
+    .note[type="2"]::placeholder {
+      color: #65263f;
+    }
+    .note[type="3"] {
+      background-color: #ff7eb9;
+      color: #2c2c2d;
+    }
+    .note[type="3"]::placeholder {
+      color: #562b3f;
+    }
+    .note[type="4"] {
+      background-color: #7afcff;
+      color: #295c5d;
+    }
+    .note[type="4"]::placeholder {
+      color: #377677;
+    }</style></body><style>body {
+      font-size:  15px;
+      font-family: Helvetica, Arial, sans-serif;
+      width: 600px;
+    }
+    p {
+      text-align: justify
+    }
+    .page {
+      line-height: 22.5px;
+      column-count: unset;
+    }
+    h1, h2, h3 {
+      line-height: initial;
+    }</style></html>

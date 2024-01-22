@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <base target="_blank">
+  <style>
+/* latin */
+@font-face {
+  font-family: 'Comic Neue';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/4UaHrEJDsxBrF37olUeD96rp57F2IwM.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin */
+@font-face {
+  font-family: 'Lexend Deca';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/K2FifZFYk-dHSE0UPPuwQ7CrD94i-NCKm-U48M1wqxnDirZPl3v-.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --fg: #000; /* foreground  */
+  --bg: #fff; /* background  */
+  --bd: #000; /* border  */
+  --lk: #006fa5; /* link */
+  --lkv: #d33bf0; /* link visited */
+  --hg: #ffff81; /* highlight  */
+}
+html {
+  overflow: overlay;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 30px auto 0 auto;
+  padding: 10px;
+  position: relative;
+
+  color: var(--fg);
+  border-color: var(--bd);
+  background-color: var(--bg);
+}
+body[data-mode$="dark"] {
+  --lk: #0096de;
+}
+body[data-mode="light"] {
+  color-scheme: light;
+  --fg: #222;
+  --bd: #222;
+  --bg: whitesmoke;
+}
+body[data-mode="dark"] {
+  color-scheme: dark;
+  --fg: #eee;
+  --bd: #eee;
+  --bg: #333;
+}
+body[data-mode="sepia"] {
+  color-scheme: light;
+  --fg: #5b4636;
+  --bd: #5b4636;
+  --bg: #f4ecd8;
+}
+body[data-mode="solarized-light"] {
+  color-scheme: light;
+  --fg: #586e75;
+  --bd: #586e75;
+  --bg: #fdf6e3;
+}
+body[data-mode="nord-light"] {
+  color-scheme: light;
+  --fg: #2e3440;
+  --bd: #2e3440;
+  --bg: #e5e9f0;
+}
+body[data-mode="groove-dark"] {
+  color-scheme: dark;
+  --fg: #cec4ac;
+  --bd: #cec4ac;
+  --bg: #282828;
+}
+body[data-mode="solarized-dark"] {
+  color-scheme: dark;
+  --fg: #839496;
+  --bd: #839496;
+  --bg: #002b36;
+}
+body[data-mode="nord-dark"] {
+  color-scheme: dark;
+  --fg: #e5e9f0;
+  --bd: #e5e9f0;
+  --bg: #2e3440;
+}
+
+@media print {
+  body[data-mode] {
+    --fg: #000;
+    --bd: #000;
+    --bg: #fff;
+
+    width: unset;
+    padding: 0;
+    margin: 0;
+  }
+}
+body[data-loaded=true] {
+  
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+img:not([width])[src$=".svg"] {
+  max-width: 100px;
+}
+body[data-images=false] canvas,
+body[data-images=false] svg,
+body[data-images=false] img {
+  display: none;
+}
+svg:not([width]):not([height]) {
+  max-width: 25vmin;
+}
+a {
+  color: var(--lk);
+  text-decoration: none;
+}
+a:visited {
+  color: var(--lkv);
+}
+
+hr {
+  background-color: var(--bd);
+  height: 1px;
+  border: 0;
+}
+#reader-domain {
+  font-family: Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  border-bottom-color: currentcolor;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  display: inline-block;
+  direction: ltr;
+}
+#reader-domain > span:first-child {
+  font-size: 1.1em;
+}
+#reader-domain > span:last-child {
+  font-size: 0.8em;
+}
+#reader-title {
+  font-size: 1.6em;
+  line-height: 1.25em;
+  width: 100%;
+  margin: 20px 0;
+  padding: 0;
+}
+#reader-credits,
+#doi,
+#published-time,
+#reader-estimated-time {
+  font-size: 0.85em;
+  line-height: 1.48em;
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+#reader-credits:not(:empty)::after {
+  content: ' ⋮ ';
+}
+#published-time:not(:empty)::before {
+  content: ' ⋮ ';
+}
+#doi-json {
+  overflow: hidden;
+}
+#doi-json code {
+  overflow: auto;
+  max-height: 400px;
+}
+#published-time:empty,
+#reader-credits:empty {
+  display: none;
+}
+mark.hghlght {
+  background-color: var(--hg);
+}
+body:not([data-columns="1"]) .page :is(h1, h2) {
+  column-span: all;
+  background-color: rgba(125, 125, 125, 0.1);
+  padding: 10px;
+}
+.hidden {
+  display: none;
+}
+</style>
+  <style id="user-css">body {
+  padding-bottom: 64px;
+}
+pre {
+  white-space: pre-wrap;
+}
+pre code {
+  background-color: #eff0f1;
+  color: #393318;
+  font-family: monospace;
+  display: block;
+  padding: 5px 10px;
+}
+body[data-mode="dark"] pre code {
+  background-color: #585858;
+  color: #e8e8e8;
+}
+
+/* CSS for sans-serif fonts */
+body[data-font=sans-serif] {}
+/* CSS for serif fonts */
+body[data-font=serif] {}
+
+/* CSS for "sepia" theme */
+body[data-mode=sepia] {}
+/* CSS for "light" theme */
+body[data-mode=light] {}
+/* CSS for "dark" theme */
+body[data-mode=dark] {}</style>
+<title>⚡ Card de Producto, Flexbox Fundamentals</title><title>⚡ Card de Producto, Flexbox Fundamentals :: Reader View</title></head>
+<body tabindex="1" data-images="true" data-mode="sepia" data-font="sans-serif" data-columns="1" data-loaded="true">
+  <span></span> <!-- for IntersectionObserver -->
+  <a id="reader-domain" href="https://app.egg.live/content/step/1rAwnNwDlnpNgmEjHTVYBu">
+    <span>app.egg.live</span>
+    <span>/content/step/1rAwnNwDlnpNgmEjHTVYBu</span>
+  </a>
+  <h1 dir="auto" id="reader-title">⚡ Card de Producto, Flexbox Fundamentals</h1>
+  <span dir="auto" id="reader-credits"></span>
+  <span dir="auto" id="reader-estimated-time">13-17 minutes</span>
+  <span dir="auto" id="published-time"></span>
+  <hr>
+  <div id="readability-page-1" class="page"><div><header><nav></nav></header><h2><u>🚀 Introducción</u></h2><p>En esta actividad del curso, nos centraremos en aplicar nuestros conocimientos de HTML y CSS para crear una "Card de Producto", utilizando Flexbox, una poderosa herramienta de diseño CSS para crear layouts eficientes y flexibles. Aprenderás a vincular HTML con una hoja de estilos externa, styles.css, y utilizarás Flexbox para posicionar y alinear los elementos de la card de producto de manera efectiva. Este ejercicio práctico te permitirá entender mejor cómo se estructuran y diseñan componentes clave en una página web.</p><p>Con el contenedor de nuestra tienda virtual ya establecido, es hora de enfocarnos en uno de los elementos más críticos de cualquier tienda en línea: la card de producto. Esta actividad del curso está dedicado a crear una representación visual atractiva y funcional de los productos que ofrecemos. Una card de producto bien diseñada es esencial para ofrecer a los clientes una vista rápida de la información más importante, ayudándoles a tomar decisiones de compra informadas.</p><p>Nuestra card de producto será el punto focal para cada artículo en venta, diseñada para captar la atención y proporcionar información clave de forma clara y concisa. Inspirándonos en el diseño limpio y moderno de la imagen, cada card contendrá una imagen del producto, el nombre, una breve descripción, el precio y un llamativo botón de acción. Esta combinación de elementos debe equilibrarse cuidadosamente para lograr una experiencia de usuario intuitiva.</p><p>En la siguiente actividad, aplicaremos los fundamentos de diseño web para traducir este concepto visual en código HTML y CSS. Esto no solo mejorará la estética general de nuestra tienda virtual.</p><hr><h2><u>🧰 Material requerido</u></h2><ul><li><p><a href="https://drive.google.com/file/d/1RoaxIk4GKs-PNfdQLdJeM9Ool4glzQHY/view?usp=drive_link" target="_blank" rel="noopener noreferrer" title="Imagen de ejemplo de la card del producto 1">Imagen de ejemplo de la card del producto 1</a></p></li><li><p><a href="https://drive.google.com/file/d/1K7-LjG3RRFYzxvKpm72yKdfSWYWYlp86/view?usp=drive_link" target="_blank" rel="noopener noreferrer" title="Imagen de ejemplo de la card del producto 2">Imagen de ejemplo de la card del producto 2</a></p></li></ul><hr><h2><u>📑 Actividades</u></h2><h3>1. Creación de la Estructura de la Card de Producto</h3><p>Para cada producto que deseamos mostrar, encapsularemos la información en una estructura HTML que definirá claramente los elementos de la card. Seguiremos una metodología clara para asegurarnos de que cada parte de la card esté correctamente posicionada y sea fácil de estilizar.</p><ol><li><p><b>Contenedor Principal de los Productos (</b><b><code>product-container</code></b><b>):</b> Comenzaremos definiendo un div con la clase <code>product-container</code> dentro del <code>div</code> con clase <code>.container</code>, en reemplazo del texto de ejemplo, que actuará como el envoltorio de nuestras card de producto. Este contenedor nos ayudará posteriormente a organizar múltiples cards en un diseño de cuadrícula o en filas y columnas para una presentación atractiva.</p></li><li><p><b>Card del Producto (</b><b><code>product-card</code></b><b>):</b> Dentro de nuestro contenedor principal, añadiremos una etiqua <code>&lt;article&gt;</code> con la clase <code>product-card</code>. Esta será la entidad principal que albergará todos los detalles específicos del producto.</p></li><li><p><b>Imagen del producto (</b><b><code>product-img</code></b><b>):</b> Colocaremos una etiqueta <code>&lt;img&gt;</code> con los atributos <code>src</code> y <code>alt</code> y la clase <code>product-img</code>, asegurándonos de que cada imagen sea accesible y tenga una descripción alternativa para los lectores de pantalla.</p></li><li><p><b>Bloque de información:</b> Colocaremos una etiqueta <code>div</code> con la clase <code>product-info</code> donde agruparemos toda la información textual de nuestro producto. Esto nos permitirá dar un margen a todos los textos por igual.</p></li><li><p><b>Título y Descripción del Producto:</b> Seguirá el título del producto, envuelto en un <code>&lt;span&gt;</code> con la clase <code>product-title</code>, seguido de una descripción corta del producto en otro <code>&lt;span&gt;</code> con la clase <code>product-description</code>.</p></li><li><p><b>Bloque de Precio (</b><b><code>product-price-block</code></b><b>):</b> Para la información de precios, crearemos un div con la clase <code>product-price-block</code>, donde incluiremos otro <code>&lt;span&gt;</code> para el precio y, si es necesario, un <code>&lt;span&gt;</code> adicional para mostrar un descuento aplicado.</p></li><li><p><b>Información de Impuestos:</b> Finalmente, incluiremos un div con la clase <code>product-tax-policy</code> para informar al cliente sobre los impuestos o cargos adicionales incluidos en el precio.</p></li></ol><p>Nuestro código para la card de producto debería verse así:</p><pre><code><code>&lt;main&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="product-container"&gt;
+      &lt;article class="product-card"&gt;
+        &lt;img class="product-img" src="ruta_a_la_imagen.jpg" alt="Macbook Pro" /&gt;
+        &lt;div class="product-info"&gt;
+          &lt;span class="product-title"&gt;Macbook Pro 15'4&lt;/span&gt;
+          &lt;span class="product-description"&gt;Space Gray&lt;/span&gt;
+          &lt;div class="product-price-block"&gt;
+            &lt;span class="price"&gt;$750.000&lt;/span&gt;
+            &lt;span class="discount"&gt;50% Off&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class="product-tax-policy"&gt;Incluye impuesto País y percepción AFIP&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/article&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/main&gt;</code>
+</code></pre><p>Con esta estructura en su lugar, habremos creado una base sólida para cada card de producto. En las siguientes actividades, nos centraremos en dar estilo a estos elementos con CSS para que sean visualmente coherentes con el diseño global de la tienda virtual y garantizar una navegación intuitiva y atractiva para los usuarios.</p><h3>2. Insertando imágenes en nuestra card</h3><ol><li><p><b>Selección de Imágenes:</b> Antes de insertar imágenes en nuestras tarjetas de producto, es importante seleccionar imágenes de alta calidad que representen de manera fiel y atractiva los productos. Asegúrate de que las imágenes estén en un formato compatible con la web (como JPG o PNG) y que su tamaño sea adecuado para una carga rápida sin sacrificar la calidad.</p></li><li><p><b>Inserción de Imágenes:</b> En la estructura de la tarjeta de producto <code>product-card</code>, inserta la imagen del producto usando la etiqueta <code>&lt;img&gt;</code>. Asegúrate de reemplazar "ruta-a-la-imagen.jpg" con la ruta correcta, que será algo como ./assets/nombre-de-la-imagen.jpg. Por ejemplo: <code>&lt;img class="product-img" src="imagenes/macbook-pro.jpg" alt="Macbook Pro"&gt;</code></p></li><li><p><b>Estilización de Imágenes:</b> Los estilos definidos para <code>.product-img</code> son fundamentales para asegurar que las imágenes se ajusten adecuadamente en las tarjetas. Agreguemos la clase y los estilos a nuestra etiqueta <code>style</code>:</p><ul><li><p><b>width: 100%;</b><code> </code>: Asegura que la imagen cubra todo el ancho de la tarjeta.</p></li><li><p><b>height: 250px;</b> : Define una altura fija para mantener la consistencia visual.</p></li><li><p><b>object-fit: cover; </b> y <b>object-position: center center; </b>: Estos estilos garantizan que la imagen se recorte de manera uniforme, manteniendo el enfoque en el centro del producto, lo que es especialmente útil para imágenes que no son del mismo tamaño o proporción.</p></li></ul></li></ol><h3>3. Aplicando estilos a nuestra información</h3><ol><li><p><b>Inclusión de Fuentes Externas: </b>Antes de aplicar estilos específicos, hemos incluido una fuente externa utilizando la etiqueta <code>&lt;link&gt;</code>. Esto nos permite usar tipografías que no están disponibles por defecto en los navegadores. En este caso, estamos utilizando la fuente 'Inter', una tipografía versátil y moderna. Inserta las etiquetas  <code>&lt;link&gt; </code>correspondientes en la sección <code>&lt;head&gt; </code>de tu documento HTML. Estas etiquetas se conectan con Google Fonts y descargan la tipografía seleccionada. Por ejemplo:</p></li></ol><pre><code><code>&lt;link rel="preconnect" href="https://fonts.googleapis.com" /&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /&gt;
+&lt;link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&amp;display=swap"
+  rel="stylesheet"
+/&gt;</code>
+</code></pre><p>Dentro de tus estilos, define la tipografía Inter para todo el sitio de la siguiente forma:</p><pre><code><code>body,
+html {
+  font-family: "Inter", sans-serif;
+}
+</code></code></pre><p><b>2. Implementando Flexbox para Layouts Flexibles:</b> En nuestro diseño, utilizamos Flexbox para estructurar la disposición de los elementos dentro de la tarjeta de producto, especialmente en el bloque de precios.</p><p>Flexbox es un método de diseño que permite colocar elementos en un contenedor de manera flexible y responsiva. En tu CSS, para el bloque de precio, usa <b>display: flex; </b>para definir un contenedor flexible. </p><p>Luego, con<b> justify-content: space-between; y align-items: center;</b>, alineas los elementos dentro del contenedor de forma horizontal y vertical respectivamente. Por ejemplo:</p><pre><code><code>.product-price-block {
+  display: flex;
+  margin: 5px 0;
+  justify-content: space-between;
+  align-items: center;
+}
+</code></code></pre><p>3. <b>Aplicando Estilos a la Información del Producto:</b></p><ol><li><p> A continuación, aplicaremos estilos a cada elemento de la tarjeta de producto para mejorar su visualización. Puedes basarte en el prototipo realizado en figma para obtener los tamaños y los detalles particulares de cada elemento.</p></li></ol><ul><li><p>Card de producto <code>.product-card</code></p><ul><li><p>Agrega un fondo de color <code>#F0F0F0</code>, redondea los bordes para que tengan un radio de 14px, define el ancho máximo de la card a 25% (<code>max-width</code>) y agrega un <code>overflow: hidden </code>para que la imagen no sobrepase los bordes redondeados.</p></li></ul></li><li><p>Bloque de información <code>.product-info</code></p><ul><li><p>Establece un padding de 20px y la propiedad <code>box-sizing: border-box</code>;</p></li></ul></li><li><p>Titulo del Producto <code>.product-title</code>:</p><ul><li><p>Aplica un tamaño de fuente más grande y un peso de fuente en negrita para destacar el título.</p></li><li><p>Usa word-wrap: break-word; para evitar que el texto se desborde de su contenedor.</p></li><li><p>Utiliza la propiedad <code>display:block </code>para que el elemento siguiente se acomode a continuación de forma vertical.</p></li><li><p>Agrega un <code>line-height: 22px </code>para que en el caso de que el titulo tenga 2 lineas, la tipografía se separe correctamente entre lineas.</p></li></ul></li><li><p>Descripción del Producto <code>.product-description</code>:</p><ul><li><p>Utiliza un tamaño de fuente más pequeño y un peso de fuente regular para diferenciarlo del título.</p></li><li><p>Ajusta el color para una mejor legibilidad y un diseño más sutil.</p></li><li><p>Agrega un margen de 6px en el borde inferior.</p></li></ul></li><li><p>Precio y Descuento <code>.product-price-block</code>:</p><ul><li><p>Identifica en los estilos la clase <code>.product-price-block</code></p></li><li><p>Establece tamaños de fuente distintos para el precio y el descuento, destacando el precio con un tamaño más grande.</p><ul><li><p>Utiliza los conceptos aprendidos sobre especificidad para agregar los siguientes estilos:</p></li></ul></li></ul></li></ul><pre><code><code>.product-price-block .price {
+  font-size: 22px;
+  font-weight: 700;
+  flex: 1;
+}
+.product-price-block .discount {
+  font-size: 12px;
+  font-weight: 700;
+  color: #428f13;
+}
+</code></code></pre><ul><li><p>Utiliza Flexbox para una disposición adecuada de estos elementos.</p></li><li><p>Política de Impuestos .<code>product-tax-policy</code>:</p><ul><li><p>Usa un tamaño de fuente pequeño y un peso de fuente ligero para que esta información sea accesible pero no dominante.</p></li></ul></li></ul><p>De momento tu tarjeta tendrá el ancho total del contenedor, pero a continuación, en el paso siguiente, definiremos un ancho fijo para cada tarjeta en relación con el espacio disponible.</p><h3><b>4. Pruebas y Ajustes</b></h3><p>Una vez aplicados los estilos, abre tu archivo HTML en un navegador y revisa cómo se ven las tarjetas de producto. Asegúrate de que todos los elementos estén bien alineados y que los estilos se apliquen como se esperaba. Realiza ajustes si es necesario.</p><p>Al final de estas actividades nuestro código debería verse de la siguiente forma:</p><pre><code><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;link rel="preconnect" href="https://fonts.googleapis.com" /&gt;
+    &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /&gt;
+    &lt;link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&amp;display=swap"
+      rel="stylesheet"
+    /&gt;
+    &lt;title&gt;Tienda Virtual&lt;/title&gt;
+    &lt;style&gt;
+      body,
+      html {
+        font-family: "Inter", sans-serif;
+      }
+      /* Estructura del sitio */
+      header {
+        border: 1px solid red;
+        height: 152px;
+      }
+      section {
+        border: 1px solid purple;
+        height: 340px;
+      }
+      main {
+        border: 1px solid blue;
+        height: auto;
+      }
+      footer {
+        border: 1px solid #009145; /* Hexadecimal color code*/
+        min-height: 368px;
+      }
+      .container {
+        width: 1220px;
+        margin: 0 auto;
+        border: 1px solid springgreen;
+        height: inherit;
+        min-height: inherit;
+      }
+      /* Card de producto */
+      .product-card {
+        background-color: #f0f0f0;
+        border-radius: 14px;
+        max-width: 25%;
+        overflow:hidden;
+      }
+      .product-img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        object-position: center center;
+      }
+      .product-info {
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      .product-title {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 22.27px;
+        word-wrap: break-word;
+        display: block;
+      }
+      .product-description {
+        font-size: 12px;
+        font-weight: 400;
+        color: #383838;
+        margin-bottom: 6px;
+      }
+      .product-price-block {
+        display: flex;
+        margin: 5px 0;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .product-price-block .price {
+        font-size: 22px;
+        font-weight: 700;
+        flex: 1;
+      }
+      .product-price-block .discount {
+        font-size: 12px;
+        font-weight: 700;
+        color: #428f13;
+      }
+      .product-tax-policy {
+        font-size: 11px;
+        font-weight: 300;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;header&gt;
+      &lt;div class="container"&gt;&lt;/div&gt;
+    &lt;/header&gt;
+    &lt;section&gt;
+      &lt;div class="container"&gt;&lt;/div&gt;
+    &lt;/section&gt;
+    &lt;main&gt;
+      &lt;div class="container"&gt;
+        &lt;div class="product-container"&gt;
+          &lt;article class="product-card"&gt;
+            &lt;img
+              class="product-img"
+              src="../assets/mock1.jpg"
+              alt="Macbook Pro"
+            /&gt;
+            &lt;div class="product-info"&gt;
+              &lt;span class="product-title"&gt;Macbook Pro 15'4&lt;/span&gt;
+              &lt;span class="product-description"&gt;Space Gray&lt;/span&gt;
+              &lt;div class="product-price-block"&gt;
+                &lt;span class="price"&gt;$750.000&lt;/span&gt;
+                &lt;span class="discount"&gt;50% Off&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;div class="product-tax-policy"&gt;
+                Incluye impuesto País y percepción AFIP
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/article&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;
+      &lt;div class="container"&gt;&lt;/div&gt;
+    &lt;/footer&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></code></pre><hr><h2><u>✅ Actividades finalizadas</u></h2><ul><li><p> Creación de la Estructura de la Card de Producto</p></li><li><p> Insertando imagenes en nuestra card</p></li><li><p> Aplicando estilos a nuestra información</p></li><li><p> Pruebas y Ajustes</p></li></ul><hr><h2><u>💼 Información complementaria</u></h2><ul><li><p><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="noopener noreferrer" title="Guía Completa de Flexbox">Guía Completa de Flexbox</a></p></li><li><p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox" target="_blank" rel="noopener noreferrer" title="Documentación de Flexbox en MDN">Documentación de Flexbox en MDN</a></p></li></ul><p>Estos recursos te proporcionarán una comprensión más profunda de Flexbox y cómo se puede utilizar para crear diseños web responsivos y atractivos.</p></div></div>
+  <span></span> <!-- for IntersectionObserver -->
+  
+  
+  
+  
+
+
+<style id="note-styling">
+    .note {
+      position: absolute;
+      z-index: 10;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: inherit;
+      padding: 5px;
+      min-width: 32px;
+      min-height: 32px;
+    }
+    .note:focus {
+      z-index: 11;
+    }
+    .note[type="0"] {
+      background-color: #fff740;
+      color: #2c2c2d;
+    }
+    .note[type="0"]::placeholder {
+      color: #868226;
+    }
+    .note[type="1"] {
+      background-color: #feff9c;
+      color: #2c2c2d;
+    }
+    .note[type="1"]::placeholder {
+      color: #6d6d3d;
+    }
+    .note[type="2"] {
+      background-color: #ff65a3;
+      color: #2c2c2d;
+    }
+    .note[type="2"]::placeholder {
+      color: #65263f;
+    }
+    .note[type="3"] {
+      background-color: #ff7eb9;
+      color: #2c2c2d;
+    }
+    .note[type="3"]::placeholder {
+      color: #562b3f;
+    }
+    .note[type="4"] {
+      background-color: #7afcff;
+      color: #295c5d;
+    }
+    .note[type="4"]::placeholder {
+      color: #377677;
+    }</style></body><style>body {
+      font-size:  15px;
+      font-family: Helvetica, Arial, sans-serif;
+      width: 600px;
+    }
+    p {
+      text-align: justify
+    }
+    .page {
+      line-height: 22.5px;
+      column-count: unset;
+    }
+    h1, h2, h3 {
+      line-height: initial;
+    }</style></html>
