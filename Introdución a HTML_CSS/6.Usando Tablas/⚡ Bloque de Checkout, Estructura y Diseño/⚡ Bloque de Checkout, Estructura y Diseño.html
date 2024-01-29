@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <base target="_blank">
+  <style>
+/* latin */
+@font-face {
+  font-family: 'Comic Neue';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/4UaHrEJDsxBrF37olUeD96rp57F2IwM.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin */
+@font-face {
+  font-family: 'Lexend Deca';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/K2FifZFYk-dHSE0UPPuwQ7CrD94i-NCKm-U48M1wqxnDirZPl3v-.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --fg: #000; /* foreground  */
+  --bg: #fff; /* background  */
+  --bd: #000; /* border  */
+  --lk: #006fa5; /* link */
+  --lkv: #d33bf0; /* link visited */
+  --hg: #ffff81; /* highlight  */
+}
+html {
+  overflow: overlay;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 30px auto 0 auto;
+  padding: 10px;
+  position: relative;
+
+  color: var(--fg);
+  border-color: var(--bd);
+  background-color: var(--bg);
+}
+body[data-mode$="dark"] {
+  --lk: #0096de;
+}
+body[data-mode="light"] {
+  color-scheme: light;
+  --fg: #222;
+  --bd: #222;
+  --bg: whitesmoke;
+}
+body[data-mode="dark"] {
+  color-scheme: dark;
+  --fg: #eee;
+  --bd: #eee;
+  --bg: #333;
+}
+body[data-mode="sepia"] {
+  color-scheme: light;
+  --fg: #5b4636;
+  --bd: #5b4636;
+  --bg: #f4ecd8;
+}
+body[data-mode="solarized-light"] {
+  color-scheme: light;
+  --fg: #586e75;
+  --bd: #586e75;
+  --bg: #fdf6e3;
+}
+body[data-mode="nord-light"] {
+  color-scheme: light;
+  --fg: #2e3440;
+  --bd: #2e3440;
+  --bg: #e5e9f0;
+}
+body[data-mode="groove-dark"] {
+  color-scheme: dark;
+  --fg: #cec4ac;
+  --bd: #cec4ac;
+  --bg: #282828;
+}
+body[data-mode="solarized-dark"] {
+  color-scheme: dark;
+  --fg: #839496;
+  --bd: #839496;
+  --bg: #002b36;
+}
+body[data-mode="nord-dark"] {
+  color-scheme: dark;
+  --fg: #e5e9f0;
+  --bd: #e5e9f0;
+  --bg: #2e3440;
+}
+
+@media print {
+  body[data-mode] {
+    --fg: #000;
+    --bd: #000;
+    --bg: #fff;
+
+    width: unset;
+    padding: 0;
+    margin: 0;
+  }
+}
+body[data-loaded=true] {
+  
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+img:not([width])[src$=".svg"] {
+  max-width: 100px;
+}
+body[data-images=false] canvas,
+body[data-images=false] svg,
+body[data-images=false] img {
+  display: none;
+}
+svg:not([width]):not([height]) {
+  max-width: 25vmin;
+}
+a {
+  color: var(--lk);
+  text-decoration: none;
+}
+a:visited {
+  color: var(--lkv);
+}
+
+hr {
+  background-color: var(--bd);
+  height: 1px;
+  border: 0;
+}
+#reader-domain {
+  font-family: Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  border-bottom-color: currentcolor;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  display: inline-block;
+  direction: ltr;
+}
+#reader-domain > span:first-child {
+  font-size: 1.1em;
+}
+#reader-domain > span:last-child {
+  font-size: 0.8em;
+}
+#reader-title {
+  font-size: 1.6em;
+  line-height: 1.25em;
+  width: 100%;
+  margin: 20px 0;
+  padding: 0;
+}
+#reader-credits,
+#doi,
+#published-time,
+#reader-estimated-time {
+  font-size: 0.85em;
+  line-height: 1.48em;
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+#reader-credits:not(:empty)::after {
+  content: ' ⋮ ';
+}
+#published-time:not(:empty)::before {
+  content: ' ⋮ ';
+}
+#doi-json {
+  overflow: hidden;
+}
+#doi-json code {
+  overflow: auto;
+  max-height: 400px;
+}
+#published-time:empty,
+#reader-credits:empty {
+  display: none;
+}
+mark.hghlght {
+  background-color: var(--hg);
+}
+body:not([data-columns="1"]) .page :is(h1, h2) {
+  column-span: all;
+  background-color: rgba(125, 125, 125, 0.1);
+  padding: 10px;
+}
+.hidden {
+  display: none;
+}
+</style>
+  <style id="user-css">body {
+  padding-bottom: 64px;
+}
+pre {
+  white-space: pre-wrap;
+}
+pre code {
+  background-color: #eff0f1;
+  color: #393318;
+  font-family: monospace;
+  display: block;
+  padding: 5px 10px;
+}
+body[data-mode="dark"] pre code {
+  background-color: #585858;
+  color: #e8e8e8;
+}
+
+/* CSS for sans-serif fonts */
+body[data-font=sans-serif] {}
+/* CSS for serif fonts */
+body[data-font=serif] {}
+
+/* CSS for "sepia" theme */
+body[data-mode=sepia] {}
+/* CSS for "light" theme */
+body[data-mode=light] {}
+/* CSS for "dark" theme */
+body[data-mode=dark] {}</style>
+<title>⚡ Bloque de Checkout, Estructura y Diseño</title><title>⚡ Bloque de Checkout, Estructura y Diseño :: Reader View</title></head>
+<body tabindex="1" data-images="true" data-mode="sepia" data-font="sans-serif" data-columns="1" data-loaded="true">
+  <span></span> <!-- for IntersectionObserver -->
+  <a id="reader-domain" href="https://app.egg.live/content/step/7BLak81KYgqJarVWqtyUBT">
+    <span>app.egg.live</span>
+    <span>/content/step/7BLak81KYgqJarVWqtyUBT</span>
+  </a>
+  <h1 dir="auto" id="reader-title">⚡ Bloque de Checkout, Estructura y Diseño</h1>
+  <span dir="auto" id="reader-credits"></span>
+  <span dir="auto" id="reader-estimated-time">7-9 minutes</span>
+  <span dir="auto" id="published-time"></span>
+  <hr>
+  <div id="readability-page-1" class="page"><div><header><nav></nav></header><h2>🚀 <u>Introducción</u></h2><p>En este paso, nos centraremos en diseñar y estructurar el bloque de checkout de la página de detalle del producto. </p><p>Este bloque es fundamental para facilitar la experiencia de compra del usuario, mostrando claramente el precio, las políticas de envío y proporcionando opciones de compra y añadido al carrito. </p><p>Un diseño claro y funcional aquí es clave para incentivar la conversión de visitantes en compradores.</p><hr><h2>🧰 <u>Material requerido</u></h2><p>Antes de comenzar a realizar las tareas del paso, debes disponer del siguiente material:</p><ul><li><p><a href="https://drive.google.com/file/d/1AxVGVT1RWRAJqS8PxIFxZN83WzjVLOrm/view?usp=drive_link" target="_blank" rel="noopener noreferrer" title="Ícono de camión">Ícono de camión</a></p></li><li><p><a href="https://drive.google.com/file/d/1EfQjFPrMFVrnF2PW7R1C5sPLuuGLj7Ta/view?usp=drive_link" target="_blank" rel="noopener noreferrer" title="Ícono de avión">Ícono de avión</a></p></li></ul><hr><h2>📑 <u>Actividades</u></h2><h3>1. Estructuración del Contenedor de Checkout</h3><p>El objetivo de esta actividad es crear y estructurar un contenedor para el checkout en la página de detalle del producto. Este contenedor incluirá elementos como el total del precio, descripción de impuestos, políticas de envío y opciones de compra.</p><h4>Instrucciones:</h4><ol><li><p><b>Crear el Contenedor Principal de Checkout:</b></p><ul><li><p>En tu archivo HTML, identifica o crea la sección donde el bloque de checkout será ubicado.</p></li><li><p>Crea un <code>&lt;div&gt;</code> que actuará como el contenedor principal para el checkout y asigna una clase para identificación, por ejemplo, <code>checkout-container</code>.</p></li><li><p>Ejemplo:</p></li></ul></li></ol><pre><code><code>&lt;div class="checkout-container"&gt;
+  &lt;!-- Los elementos del checkout irán aquí --&gt;
+&lt;/div&gt;
+</code></code></pre><ol><li><p><b>Agregar Elementos del Checkout:</b></p><ul><li><p>Dentro del <code>checkout-container</code>, añade los siguientes elementos:</p><ul><li><p><b>Etiqueta Total:</b></p><ul><li><p>Agrega una etiqueta <code>&lt;span&gt;</code> o <code>&lt;div&gt;</code> para el total, por ejemplo, "Total:". Asigna una clase para estilizarla más tarde.</p></li></ul></li><li><p><b>Precio Total:</b></p><ul><li><p>Incluye un elemento <code>&lt;h2&gt;</code> para mostrar el precio total del producto. Asígnale una clase como <code>checkout-total-price</code>.</p></li></ul></li><li><p><b>Descripción de Impuestos y Políticas:</b></p><ul><li><p>Utiliza un párrafo <code>&lt;p&gt;</code> para describir detalles sobre impuestos y recuperaciones. Esta información es vital para que el usuario entienda cualquier costo adicional.</p></li></ul></li></ul></li></ul></li></ol><pre><code><code>&lt;span class="checkout-total-label"&gt;Total:&lt;/span&gt;
+&lt;h2 class="checkout-total-price"&gt;$152.400&lt;/h2&gt;
+&lt;p class="checkout-description"&gt;
+  Incluye impuesto PAIS y percepción AFIP. Podés recuperar AR$ 50711
+  haciendo la solicitud en AFIP.
+&lt;/p&gt;
+</code></code></pre><ol><li><p><b>Listar Políticas de Envío:</b></p><ul><li><p>Añade una lista <code>&lt;ul&gt;</code> con varios <code>&lt;li&gt;</code> para describir las políticas de envío y otras condiciones relevantes.</p></li><li><p>Incluye íconos o imágenes para representar visualmente cada política, si es posible.</p></li></ul></li></ol><pre><code><code>&lt;ul class="checkout-policy-list"&gt;
+  &lt;li&gt;
+    &lt;span class="policy-icon"
+      &gt;&lt;img src="../assets/truck.png" alt="Truck"
+    /&gt;&lt;/span&gt;
+    &lt;span class="policy-desc"
+      &gt;Agrega el producto al carrito para conocer los costos de envío&lt;/span
+    &gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;span class="policy-icon"
+      &gt;&lt;img src="../assets/plane.png" alt="Plane"
+    /&gt;&lt;/span&gt;
+    &lt;span class="policy-desc"
+      &gt;Recibí aproximadamente entre 10 y 15 días hábiles, seleccionando
+      envío normal&lt;/span
+    &gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code>
+</code></pre><ol><li><p><b>Opciones de Compra:</b></p><ul><li><p>Agrega un div para las opciones de compra que incluya elementos como un input para la cantidad y botones para "Comprar" y "Añadir al Carrito".</p></li><li><p>Cada botón y campo de entrada debe tener su propia clase para poder aplicar estilos específicos.</p></li></ul></li></ol><pre><code><code>&lt;ul class="checkout-policy-list"&gt;
+  &lt;li&gt;
+    &lt;span class="policy-icon"
+      &gt;&lt;img src="../assets/truck.png" alt="Truck"
+    /&gt;&lt;/span&gt;
+    &lt;span class="policy-desc"
+      &gt;Agrega el producto al carrito para conocer los costos de envío&lt;/span
+    &gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;span class="policy-icon"
+      &gt;&lt;img src="../assets/plane.png" alt="Plane"
+    /&gt;&lt;/span&gt;
+    &lt;span class="policy-desc"
+      &gt;Recibí aproximadamente entre 10 y 15 días hábiles, seleccionando
+      envío normal&lt;/span
+    &gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code>
+</code></pre><p>Al completar estos pasos, tendrás un contenedor de checkout bien estructurado y listo para ser estilizado. Este contenedor será esencial para proporcionar a los usuarios una experiencia clara y sencilla al realizar una compra.</p><h3>2. Diseño y Estilización del Contenedor y sus Elementos</h3><p>En esta actividad, nos enfocaremos en aplicar los estilos CSS proporcionados para hacer que el bloque de checkout sea intuitivo, atractivo y coherente con el diseño general del sitio.</p><ol><li><p><b>Estilizar el Contenedor de Checkout:</b></p><ul><li><p>Aplica estilos al <code>checkout-container</code> para establecer un fondo, padding y bordes redondeados. Esto ayudará a que el bloque de checkout se destaque del resto de la página.</p></li><li><p>Ejemplo:</p></li></ul></li></ol><pre><code><code>.checkout-container {
+  background-color: #ebebeb; /* Color de fondo claro */
+  padding: 33px; /* Espaciado interno */
+  border-radius: 2px; /* Bordes ligeramente redondeados */
+}
+</code></code></pre><ol><li><p><b>Estilizar Etiqueta y Precio Total:</b></p><ul><li><p>Aplica estilos al <code>checkout-total-label</code> y <code>checkout-total-price</code> para resaltar visualmente el total del precio.</p></li><li><p>Asegúrate de que el color, tamaño de fuente y peso de la fuente del precio sean claros y destacados.</p></li><li><p>Ejemplo:</p></li></ul></li></ol><pre><code><code>.checkout-total-label {
+  color: #ff3b3c; /* Color distintivo para el texto 'Total:' */
+}</code></code></pre><pre><code><code>.checkout-total-price {
+  font-size: 28px; /* Tamaño grande para el precio */
+  font-weight: 700; /* Fuente en negrita */
+  margin-top: 10px; /* Espacio por encima del precio */
+}
+</code></code></pre><ol><li><p><b>Estilizar Descripción del Checkout:</b></p><ul><li><p>Estiliza el párrafo <code>checkout-description</code> para garantizar que la información adicional sea legible y esté bien estructurada.</p></li><li><p>Ejemplo:</p></li></ul></li></ol><pre><code><code>.checkout-description {
+  line-height: 20.4px; /* Espaciado de línea para mejorar la legibilidad */
+  word-wrap: break-word; /* Asegura que el texto no desborde el contenedor */
+}
+</code></code></pre><ol><li><p><b>Estilizar Lista de Políticas de Envío:</b></p><ul><li><p>Aplica estilos a la <code>checkout-policy-list</code> y sus elementos <code>&lt;li&gt;</code> para mostrar claramente las políticas de envío y otras condiciones.</p></li><li><p>Usa <code>display: flex;</code> en los <code>&lt;li&gt;</code> para alinear los íconos con el texto.</p></li><li><p>Ejemplo:</p></li></ul></li></ol><pre><code><code>.checkout-policy-list {
+  list-style-type: none; /* Elimina los marcadores de lista */
+  margin-bottom: 30px; /* Espacio debajo de la lista */
+}</code></code></pre><pre><code><code>.checkout-policy-list li {
+  display: flex; /* Alineación horizontal de íconos y texto */
+  margin: 15px 0; /* Espacio entre elementos de la lista */
+}</code></code></pre><pre><code><code>.checkout-policy-list li .policy-icon {
+  margin-right: 15px; /* Espacio entre el ícono y el texto */
+}</code>
+</code></pre><ol><li><p><b>Estilizar Opciones de Compra:</b></p><ul><li><p>Estiliza la sección <code>checkout-process</code> y sus elementos para mejorar la interacción con las opciones de compra.</p></li><li><p>Asegúrate de que los botones y el campo de cantidad sean fáciles de usar y visualmente atractivos.</p></li><li><p>Ejemplo:</p></li></ul></li></ol><pre><code><code>.checkout-process .top {
+  display: flex; /* Alinea el input y el botón horizontalmente */
+  margin-bottom: 10px; /* Espacio debajo del grupo superior */
+}</code></code></pre><pre><code><code>.checkout-process .top input {
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  width: 62px;
+  margin-right: 10px;
+  padding: 0 10px 0 20px;
+  box-sizing: border-box;
+}</code></code></pre><pre><code><code>.btn-primary {
+  width: 100%;
+  background: #ff3b3c;
+  color: white;
+  font-weight: bold;
+  border: none;
+  height: 40px;
+  border-radius: 10px;
+}</code></code></pre><pre><code><code>.btn-outline {
+  width: 100%;
+  border: 1px solid #ff3b3c;
+  color: #ff3b3c;
+  font-weight: bold;
+  height: 40px;
+  border-radius: 10px;
+}</code>
+</code></pre><ol><li><p><b>Pruebas Finales:</b></p><ul><li><p>Revisa tu página en un navegador para asegurarte de que los estilos se apliquen correctamente y el bloque de checkout sea coherente y atractivo.</p></li><li><p>Haz ajustes según sea necesario para mejorar la presentación y asegurarte de que sea responsiva.</p></li></ul></li></ol><p>Al completar estos pasos, tendrás un bloque de checkout bien diseñado, lo que facilitará a los usuarios comprender el costo total y las políticas relacionadas, así como realizar acciones de compra.</p><hr><h2>✅ <u>Actividades finalizadas</u></h2><ul><li><p> Estructuración del Contenedor de Checkout</p></li><li><p> Diseño y Estilización del Contenedor y sus Elementos</p></li></ul></div></div>
+  <span></span> <!-- for IntersectionObserver -->
+  
+  
+  
+  
+
+
+<style id="note-styling">
+    .note {
+      position: absolute;
+      z-index: 10;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: inherit;
+      padding: 5px;
+      min-width: 32px;
+      min-height: 32px;
+    }
+    .note:focus {
+      z-index: 11;
+    }
+    .note[type="0"] {
+      background-color: #fff740;
+      color: #2c2c2d;
+    }
+    .note[type="0"]::placeholder {
+      color: #868226;
+    }
+    .note[type="1"] {
+      background-color: #feff9c;
+      color: #2c2c2d;
+    }
+    .note[type="1"]::placeholder {
+      color: #6d6d3d;
+    }
+    .note[type="2"] {
+      background-color: #ff65a3;
+      color: #2c2c2d;
+    }
+    .note[type="2"]::placeholder {
+      color: #65263f;
+    }
+    .note[type="3"] {
+      background-color: #ff7eb9;
+      color: #2c2c2d;
+    }
+    .note[type="3"]::placeholder {
+      color: #562b3f;
+    }
+    .note[type="4"] {
+      background-color: #7afcff;
+      color: #295c5d;
+    }
+    .note[type="4"]::placeholder {
+      color: #377677;
+    }</style></body><style>body {
+      font-size:  15px;
+      font-family: Helvetica, Arial, sans-serif;
+      width: 600px;
+    }
+    p {
+      text-align: justify
+    }
+    .page {
+      line-height: 22.5px;
+      column-count: unset;
+    }
+    h1, h2, h3 {
+      line-height: initial;
+    }</style></html>

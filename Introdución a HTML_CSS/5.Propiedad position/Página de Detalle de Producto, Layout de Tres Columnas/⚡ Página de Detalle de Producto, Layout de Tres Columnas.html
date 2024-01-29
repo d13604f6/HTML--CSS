@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <base target="_blank">
+  <style>
+/* latin */
+@font-face {
+  font-family: 'Comic Neue';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/4UaHrEJDsxBrF37olUeD96rp57F2IwM.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin */
+@font-face {
+  font-family: 'Lexend Deca';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/K2FifZFYk-dHSE0UPPuwQ7CrD94i-NCKm-U48M1wqxnDirZPl3v-.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --fg: #000; /* foreground  */
+  --bg: #fff; /* background  */
+  --bd: #000; /* border  */
+  --lk: #006fa5; /* link */
+  --lkv: #d33bf0; /* link visited */
+  --hg: #ffff81; /* highlight  */
+}
+html {
+  overflow: overlay;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 30px auto 0 auto;
+  padding: 10px;
+  position: relative;
+
+  color: var(--fg);
+  border-color: var(--bd);
+  background-color: var(--bg);
+}
+body[data-mode$="dark"] {
+  --lk: #0096de;
+}
+body[data-mode="light"] {
+  color-scheme: light;
+  --fg: #222;
+  --bd: #222;
+  --bg: whitesmoke;
+}
+body[data-mode="dark"] {
+  color-scheme: dark;
+  --fg: #eee;
+  --bd: #eee;
+  --bg: #333;
+}
+body[data-mode="sepia"] {
+  color-scheme: light;
+  --fg: #5b4636;
+  --bd: #5b4636;
+  --bg: #f4ecd8;
+}
+body[data-mode="solarized-light"] {
+  color-scheme: light;
+  --fg: #586e75;
+  --bd: #586e75;
+  --bg: #fdf6e3;
+}
+body[data-mode="nord-light"] {
+  color-scheme: light;
+  --fg: #2e3440;
+  --bd: #2e3440;
+  --bg: #e5e9f0;
+}
+body[data-mode="groove-dark"] {
+  color-scheme: dark;
+  --fg: #cec4ac;
+  --bd: #cec4ac;
+  --bg: #282828;
+}
+body[data-mode="solarized-dark"] {
+  color-scheme: dark;
+  --fg: #839496;
+  --bd: #839496;
+  --bg: #002b36;
+}
+body[data-mode="nord-dark"] {
+  color-scheme: dark;
+  --fg: #e5e9f0;
+  --bd: #e5e9f0;
+  --bg: #2e3440;
+}
+
+@media print {
+  body[data-mode] {
+    --fg: #000;
+    --bd: #000;
+    --bg: #fff;
+
+    width: unset;
+    padding: 0;
+    margin: 0;
+  }
+}
+body[data-loaded=true] {
+  
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+img:not([width])[src$=".svg"] {
+  max-width: 100px;
+}
+body[data-images=false] canvas,
+body[data-images=false] svg,
+body[data-images=false] img {
+  display: none;
+}
+svg:not([width]):not([height]) {
+  max-width: 25vmin;
+}
+a {
+  color: var(--lk);
+  text-decoration: none;
+}
+a:visited {
+  color: var(--lkv);
+}
+
+hr {
+  background-color: var(--bd);
+  height: 1px;
+  border: 0;
+}
+#reader-domain {
+  font-family: Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  border-bottom-color: currentcolor;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  display: inline-block;
+  direction: ltr;
+}
+#reader-domain > span:first-child {
+  font-size: 1.1em;
+}
+#reader-domain > span:last-child {
+  font-size: 0.8em;
+}
+#reader-title {
+  font-size: 1.6em;
+  line-height: 1.25em;
+  width: 100%;
+  margin: 20px 0;
+  padding: 0;
+}
+#reader-credits,
+#doi,
+#published-time,
+#reader-estimated-time {
+  font-size: 0.85em;
+  line-height: 1.48em;
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+#reader-credits:not(:empty)::after {
+  content: ' ⋮ ';
+}
+#published-time:not(:empty)::before {
+  content: ' ⋮ ';
+}
+#doi-json {
+  overflow: hidden;
+}
+#doi-json code {
+  overflow: auto;
+  max-height: 400px;
+}
+#published-time:empty,
+#reader-credits:empty {
+  display: none;
+}
+mark.hghlght {
+  background-color: var(--hg);
+}
+body:not([data-columns="1"]) .page :is(h1, h2) {
+  column-span: all;
+  background-color: rgba(125, 125, 125, 0.1);
+  padding: 10px;
+}
+.hidden {
+  display: none;
+}
+</style>
+  <style id="user-css">body {
+  padding-bottom: 64px;
+}
+pre {
+  white-space: pre-wrap;
+}
+pre code {
+  background-color: #eff0f1;
+  color: #393318;
+  font-family: monospace;
+  display: block;
+  padding: 5px 10px;
+}
+body[data-mode="dark"] pre code {
+  background-color: #585858;
+  color: #e8e8e8;
+}
+
+/* CSS for sans-serif fonts */
+body[data-font=sans-serif] {}
+/* CSS for serif fonts */
+body[data-font=serif] {}
+
+/* CSS for "sepia" theme */
+body[data-mode=sepia] {}
+/* CSS for "light" theme */
+body[data-mode=light] {}
+/* CSS for "dark" theme */
+body[data-mode=dark] {}</style>
+<title>⚡ Página de Detalle de Producto, Layout de Tres Columnas</title><title>⚡ Página de Detalle de Producto, Layout de Tres Columnas :: Reader View</title></head>
+<body tabindex="1" data-images="true" data-mode="sepia" data-font="sans-serif" data-columns="1" data-loaded="true">
+  <span></span> <!-- for IntersectionObserver -->
+  <a id="reader-domain" href="https://app.egg.live/content/step/33ew3vFpFE6ZZcvyYLy1En">
+    <span>app.egg.live</span>
+    <span>/content/step/33ew3vFpFE6ZZcvyYLy1En</span>
+  </a>
+  <h1 dir="auto" id="reader-title">⚡ Página de Detalle de Producto, Layout de Tres Columnas</h1>
+  <span dir="auto" id="reader-credits"></span>
+  <span dir="auto" id="reader-estimated-time">6-7 minutes</span>
+  <span dir="auto" id="published-time"></span>
+  <hr>
+  <div id="readability-page-1" class="page"><div><header><nav></nav></header><h2><u>🚀 Introducción</u></h2><p>En este paso, aprenderemos a crear una página de detalle de producto, que es esencial en cualquier sitio web de comercio electrónico. Esta página proporcionará a los usuarios información detallada sobre un producto específico.</p><hr><h2><u>🧰 Material requerido</u></h2><p>Para este paso, necesitarás las habilidades y conocimientos adquiridos en los pasos anteriores, así como las imágenes y descripciones de los productos que deseas mostrar.</p><hr><h2><u>📑 Actividades</u></h2><h3>1. Preparando nuestro sitio para la nueva página de producto</h3><p>En este paso, vamos a crear una página de detalles de producto. Comenzaremos duplicando nuestro archivo index.html y lo renombraremos como product.html. Después, realizaremos ajustes en el contenido para enfocarnos específicamente en los detalles del producto.</p><ol><li><p><b>Duplicando nuestro archivo</b>:</p></li></ol><ul><li><p>Localiza el archivo index.html: Este archivo es tu página principal actual y servirá como base para tu nueva página de producto.</p></li><li><p>Duplica el archivo: Haz una copia de index.html y renómbralo como product.html. Puedes hacer esto usando el explorador de archivos de tu sistema operativo o mediante una línea de comando. Si usas un sistema basado en Windows, simplemente copia y pega el archivo. En un sistema basado en Unix, como Linux o macOS, puedes usar el comando cp index.html product.html en tu terminal.</p></li><li><p>Verifica la duplicación: Asegúrate de que el nuevo archivo product.html esté en la misma ubicación que tu index.html y no te olvides de ejecutarlo en tu navegador para poder ir viendo los cambios.</p></li></ul><ol><li><p><b>Limpiando el contenido de product.html</b>:</p></li></ol><ul><li><p>Abre product.html en tu editor de texto: Ahora que tienes tu archivo duplicado, es hora de hacer ajustes específicos para la página de producto.</p></li><li><p>Elimina la sección hero: La sección hero generalmente es específica de la página de inicio. Encuentra esta sección en tu product.html y elimínala. Esto puede ser tan simple como borrar el bloque de HTML correspondiente.</p></li><li><p>Limpia el contenido principal (main): Tu objetivo es centrarte en los detalles del producto, así que elimina el contenido innecesario que pertenece a la página principal. Mantén la etiqueta <code>&lt;main&gt;</code> y los contenedores principales a main pero quita todo el contenido interno que no esté relacionado con los detalles del producto.</p></li><li><p>Guarda tus cambios: Después de realizar estos ajustes, guarda el archivo product.html.</p></li></ul><h3>2. Creando la nueva estructura dentro de nuestro <code>&lt;main&gt;</code></h3><p>En este paso crearemos la estructura necesaria dentro de main para alojar nuestros bloques de detalle de producto. Un bloque para imagenes, un bloque para descripción y el bloque final para detalles como precio y los botones o call to action para agregar nuestro producto al carrito.</p><ol><li><p><b>Revisión de estilos existentes</b>:</p></li></ol><ul><li><p>Revisa los estilos ya aplicados a las clases container y columns-container. Estos estilos serán la base para tu nueva estructura, ayudando a mantener la coherencia y evitar duplicación de código.</p></li></ul><ol><li><p><b>Modificación de estilos</b>:</p></li></ol><ul><li><p>En tu archivo styles.css, encuentra la clase .columns-container.</p></li><li><p>Agrega gap: 20px; a .columns-container. Esto asegurará que las nuevas columnas dentro de la página de producto tengan un espacio de 20 píxeles entre ellas.</p></li></ul><ol><li><p><b>Estructura básica</b>:</p></li></ol><ul><li><p>Dentro de <code>&lt;main&gt;</code>, utiliza la clase container para envolver tu contenido principal.</p></li><li><p>Dentro de container, usa <code>.columns-container</code> para crear un contenedor flexible para tus columnas. Recuerda que las clases <code>.container </code>y <code>.columns-container</code> ya están definidas en nuestro archivo de estilos y en el caso de <code>.columns-container</code>, organizan los divs "hijos" de <code>.container</code> de forma horizontal. Justo lo que necesitamos para nuestro layout de 3 columnas.</p></li></ul><ol><li><p><b>División en columna</b>:</p></li></ol><ul><li><p>Crea 3 <code>&lt;div&gt;</code> dentro de columns-container. Cada una representará un aspecto diferente del producto: imágenes, descripción y detalles adicionales como precio y botones de acción.</p></li><li><p>Asigna una clase o identificador a cada <code>&lt;div&gt; </code>para poder estilizarlos y referenciarlos específicamente más adelante.</p></li></ul><ol><li><p><b>Bloque de ventas</b>:</p></li></ol><ul><li><p>Agrega un <code>&lt;div&gt;</code> con la clase <code>sales-block</code> después del <code>columns-container</code>. Este bloque puede usarse para mostrar productos en oferta u otras promociones relacionadas.</p></li></ul><ol><li><p><b>Contenido de ejemplo</b>:</p></li></ol><ul><li><p>Por ahora, puedes usar texto de relleno como "Lorem ipsum" para simular el contenido. Esto te ayudará a visualizar la estructura y realizar ajustes antes de agregar el contenido real.</p></li></ul><p>Nuestro <code>&lt;main&gt;</code> debería verse así:</p><pre><code><code>&lt;main&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="columns-container"&gt;
+      &lt;div&gt;
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam,
+        unde! Obcaecati non cum illum, rem voluptatem commodi exercitationem
+        accusantium, quod voluptatum aspernatur amet ab! Quo soluta aut
+        reiciendis labore corporis?
+      &lt;/div&gt;
+      &lt;div&gt;
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam,
+        unde! Obcaecati non cum illum, rem voluptatem commodi exercitationem
+        accusantium, quod voluptatum aspernatur amet ab! Quo soluta aut
+        reiciendis labore corporis?
+      &lt;/div&gt;
+      &lt;div&gt;
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam,
+        unde! Obcaecati non cum illum, rem voluptatem commodi exercitationem
+        accusantium, quod voluptatum aspernatur amet ab! Quo soluta aut
+        reiciendis labore corporis?
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="sales-block"&gt;
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus porro,
+      eum minus nobis doloribus pariatur tempora officia a, facilis repellendus,
+      aspernatur veniam. Similique nulla tenetur necessitatibus provident ipsam,
+      incidunt ipsa.
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/main&gt;</code>
+</code></pre><hr><h2><u>✅ Actividades finalizadas</u></h2><ul><li><p> Preparando nuestro sitio para la nueva página de producto</p></li><li><p> Creando la nueva estructura dentro de nuestro <code>&lt;main&gt;</code></p></li></ul><hr></div></div>
+  <span></span> <!-- for IntersectionObserver -->
+  
+  
+  
+  
+
+
+<style id="note-styling">
+    .note {
+      position: absolute;
+      z-index: 10;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: inherit;
+      padding: 5px;
+      min-width: 32px;
+      min-height: 32px;
+    }
+    .note:focus {
+      z-index: 11;
+    }
+    .note[type="0"] {
+      background-color: #fff740;
+      color: #2c2c2d;
+    }
+    .note[type="0"]::placeholder {
+      color: #868226;
+    }
+    .note[type="1"] {
+      background-color: #feff9c;
+      color: #2c2c2d;
+    }
+    .note[type="1"]::placeholder {
+      color: #6d6d3d;
+    }
+    .note[type="2"] {
+      background-color: #ff65a3;
+      color: #2c2c2d;
+    }
+    .note[type="2"]::placeholder {
+      color: #65263f;
+    }
+    .note[type="3"] {
+      background-color: #ff7eb9;
+      color: #2c2c2d;
+    }
+    .note[type="3"]::placeholder {
+      color: #562b3f;
+    }
+    .note[type="4"] {
+      background-color: #7afcff;
+      color: #295c5d;
+    }
+    .note[type="4"]::placeholder {
+      color: #377677;
+    }</style></body><style>body {
+      font-size:  15px;
+      font-family: Helvetica, Arial, sans-serif;
+      width: 600px;
+    }
+    p {
+      text-align: justify
+    }
+    .page {
+      line-height: 22.5px;
+      column-count: unset;
+    }
+    h1, h2, h3 {
+      line-height: initial;
+    }</style></html>

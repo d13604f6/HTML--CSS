@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <base target="_blank">
+  <style>
+/* latin */
+@font-face {
+  font-family: 'Comic Neue';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/4UaHrEJDsxBrF37olUeD96rp57F2IwM.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin */
+@font-face {
+  font-family: 'Lexend Deca';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/K2FifZFYk-dHSE0UPPuwQ7CrD94i-NCKm-U48M1wqxnDirZPl3v-.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --fg: #000; /* foreground  */
+  --bg: #fff; /* background  */
+  --bd: #000; /* border  */
+  --lk: #006fa5; /* link */
+  --lkv: #d33bf0; /* link visited */
+  --hg: #ffff81; /* highlight  */
+}
+html {
+  overflow: overlay;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 30px auto 0 auto;
+  padding: 10px;
+  position: relative;
+
+  color: var(--fg);
+  border-color: var(--bd);
+  background-color: var(--bg);
+}
+body[data-mode$="dark"] {
+  --lk: #0096de;
+}
+body[data-mode="light"] {
+  color-scheme: light;
+  --fg: #222;
+  --bd: #222;
+  --bg: whitesmoke;
+}
+body[data-mode="dark"] {
+  color-scheme: dark;
+  --fg: #eee;
+  --bd: #eee;
+  --bg: #333;
+}
+body[data-mode="sepia"] {
+  color-scheme: light;
+  --fg: #5b4636;
+  --bd: #5b4636;
+  --bg: #f4ecd8;
+}
+body[data-mode="solarized-light"] {
+  color-scheme: light;
+  --fg: #586e75;
+  --bd: #586e75;
+  --bg: #fdf6e3;
+}
+body[data-mode="nord-light"] {
+  color-scheme: light;
+  --fg: #2e3440;
+  --bd: #2e3440;
+  --bg: #e5e9f0;
+}
+body[data-mode="groove-dark"] {
+  color-scheme: dark;
+  --fg: #cec4ac;
+  --bd: #cec4ac;
+  --bg: #282828;
+}
+body[data-mode="solarized-dark"] {
+  color-scheme: dark;
+  --fg: #839496;
+  --bd: #839496;
+  --bg: #002b36;
+}
+body[data-mode="nord-dark"] {
+  color-scheme: dark;
+  --fg: #e5e9f0;
+  --bd: #e5e9f0;
+  --bg: #2e3440;
+}
+
+@media print {
+  body[data-mode] {
+    --fg: #000;
+    --bd: #000;
+    --bg: #fff;
+
+    width: unset;
+    padding: 0;
+    margin: 0;
+  }
+}
+body[data-loaded=true] {
+  
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+img:not([width])[src$=".svg"] {
+  max-width: 100px;
+}
+body[data-images=false] canvas,
+body[data-images=false] svg,
+body[data-images=false] img {
+  display: none;
+}
+svg:not([width]):not([height]) {
+  max-width: 25vmin;
+}
+a {
+  color: var(--lk);
+  text-decoration: none;
+}
+a:visited {
+  color: var(--lkv);
+}
+
+hr {
+  background-color: var(--bd);
+  height: 1px;
+  border: 0;
+}
+#reader-domain {
+  font-family: Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  border-bottom-color: currentcolor;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  display: inline-block;
+  direction: ltr;
+}
+#reader-domain > span:first-child {
+  font-size: 1.1em;
+}
+#reader-domain > span:last-child {
+  font-size: 0.8em;
+}
+#reader-title {
+  font-size: 1.6em;
+  line-height: 1.25em;
+  width: 100%;
+  margin: 20px 0;
+  padding: 0;
+}
+#reader-credits,
+#doi,
+#published-time,
+#reader-estimated-time {
+  font-size: 0.85em;
+  line-height: 1.48em;
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+#reader-credits:not(:empty)::after {
+  content: ' ⋮ ';
+}
+#published-time:not(:empty)::before {
+  content: ' ⋮ ';
+}
+#doi-json {
+  overflow: hidden;
+}
+#doi-json code {
+  overflow: auto;
+  max-height: 400px;
+}
+#published-time:empty,
+#reader-credits:empty {
+  display: none;
+}
+mark.hghlght {
+  background-color: var(--hg);
+}
+body:not([data-columns="1"]) .page :is(h1, h2) {
+  column-span: all;
+  background-color: rgba(125, 125, 125, 0.1);
+  padding: 10px;
+}
+.hidden {
+  display: none;
+}
+</style>
+  <style id="user-css">body {
+  padding-bottom: 64px;
+}
+pre {
+  white-space: pre-wrap;
+}
+pre code {
+  background-color: #eff0f1;
+  color: #393318;
+  font-family: monospace;
+  display: block;
+  padding: 5px 10px;
+}
+body[data-mode="dark"] pre code {
+  background-color: #585858;
+  color: #e8e8e8;
+}
+
+/* CSS for sans-serif fonts */
+body[data-font=sans-serif] {}
+/* CSS for serif fonts */
+body[data-font=serif] {}
+
+/* CSS for "sepia" theme */
+body[data-mode=sepia] {}
+/* CSS for "light" theme */
+body[data-mode=light] {}
+/* CSS for "dark" theme */
+body[data-mode=dark] {}</style>
+<title>⚡ Descripción Detallada del Producto</title><title>⚡ Descripción Detallada del Producto :: Reader View</title></head>
+<body tabindex="1" data-images="true" data-mode="sepia" data-font="sans-serif" data-columns="1" data-loaded="true">
+  <span></span> <!-- for IntersectionObserver -->
+  <a id="reader-domain" href="https://app.egg.live/content/step/3Rx63DhQOlbC5MpDDZOpTI">
+    <span>app.egg.live</span>
+    <span>/content/step/3Rx63DhQOlbC5MpDDZOpTI</span>
+  </a>
+  <h1 dir="auto" id="reader-title">⚡ Descripción Detallada del Producto</h1>
+  <span dir="auto" id="reader-credits"></span>
+  <span dir="auto" id="reader-estimated-time">6-8 minutes</span>
+  <span dir="auto" id="published-time"></span>
+  <hr>
+  <div id="readability-page-1" class="page"><div><header><nav></nav></header><h2>🚀 <u>Introducción</u></h2><p>En este paso, vamos a profundizar en la creación de una descripción detallada del producto para nuestra tienda virtual. </p><p>El enfoque estará en diseñar y estructurar un bloque específico dentro de nuestra página de producto que no solo realce las características del producto, sino que también mejore la experiencia del usuario. </p><p>Aprenderemos a utilizar CSS Flexbox para alinear elementos de manera efectiva y a aplicar estilos específicos para hacer que la descripción del producto sea atractiva y fácil de leer.</p><hr><h2><u>🧰 Material requerido</u></h2><p>Para este paso, no se requiere material adicional.</p><hr><h2><u>📑 Actividades</u></h2><h3>1. Agregando Flexbox a las Columnas</h3><ol><li><p><b>Identificar las Columnas para Aplicar Flexbox:</b></p><ul><li><p>Identifica las tres columnas principales en tu página de producto: el bloque de imágenes del producto, el bloque de descripción del producto y el bloque de compra del producto.</p></li><li><p>Asegúrate de que cada bloque esté dentro de un <code>&lt;div&gt;</code> y tenga su propia clase para identificación (como <code>.product-images-block</code>, <code>.product-description-block</code>, y <code>.product-checkout-block</code>).</p></li></ul></li><li><p><b>Aplicación de Flexbox a Cada Columna:</b></p><ul><li><p>En tu archivo CSS, localiza o crea las clases correspondientes a cada uno de los bloques mencionados anteriormente.</p></li><li><p>Aplica la propiedad <code>flex: 1;</code> a cada una de estas clases. Esto asignará a cada columna un tamaño flexible que les permitirá ocupar espacios equivalentes dentro de su contenedor padre. Por ejemplo:</p></li></ul></li></ol><pre><code><code>.product-images-block {
+  flex: 1;
+}</code></code></pre><pre><code><code>.product-description-block {
+  flex: 1;
+}</code></code></pre><pre><code><code>.product-checkout-block {
+  flex: 1;
+}
+</code></code></pre><ol><li><p><b>Ajustes Adicionales (Opcional):</b></p><ul><li><p>Dependiendo de cómo esté estructurada la página, podrías necesitar ajustar otros aspectos para que Flexbox funcione correctamente. Por ejemplo, asegúrate de que el contenedor padre de estas columnas esté configurado para mostrar sus elementos hijos con Flexbox (<code>display: flex;</code>).</p></li><li><p>Realiza ajustes en los márgenes, paddings, o cualquier otro estilo que sea necesario para que la distribución y alineación de las columnas sean coherentes y visualmente atractivas.</p></li></ul></li><li><p><b>Verificación:</b></p><ul><li><p>Una vez aplicados estos estilos, revisa tu página en un navegador para asegurarte de que las columnas se distribuyen equitativamente y se alinean correctamente. Realiza ajustes si es necesario.</p></li></ul></li></ol><h3>2. Estructurando el Bloque de Descripción del Producto</h3><ol><li><p><b>Crear el Contenedor Principal para la Descripción:</b></p><ul><li><p>En tu archivo HTML, localiza o crea un <code>&lt;div&gt;</code> que actúe como el contenedor principal para la descripción del producto. Asígnale una clase para poder identificarlo y estilizarlo fácilmente, por ejemplo, <code>product-description-block</code>.</p></li><li><p>Dentro de este <code>&lt;div&gt;</code>, colocarás todos los elementos relacionados con la descripción del producto.</p></li><li><p>Ejemplo de inicio del bloque:</p></li></ul></li></ol><pre><code><code>&lt;div class="product-description-block"&gt;
+  &lt;!-- Los elementos irán aquí --&gt;
+&lt;/div&gt;</code>
+</code></pre><ol><li><p><b>Agregar Título del Producto:</b></p><ul><li><p>Dentro del <code>product-description-block</code>, agrega un elemento <code>&lt;h1&gt;</code> para el título del producto.</p></li><li><p>Asigna una clase al título para poder aplicar estilos específicos más tarde.</p></li><li><p>Ejemplo:</p></li></ul></li></ol><pre><code><code>&lt;h1 class="title"&gt;Nombre del Producto&lt;/h1&gt;</code>
+</code></pre><ol><li><p><b>Incluir Selector de Opciones del Producto (si aplica):</b></p><ul><li><p>Si tu producto tiene opciones como color o tamaño, incluye un <code>&lt;form&gt;</code> con selectores.</p></li><li><p>Utiliza <code>&lt;fieldset&gt;</code> para agrupar cada opción y <code>&lt;label&gt;</code> para describir cada selector.</p></li><li><p>Ejemplo:</p></li></ul></li></ol><pre><code><code>&lt;form class="selector"&gt;
+  &lt;fieldset&gt;
+    &lt;label class="label" for="color"&gt;Color&lt;/label&gt;
+    &lt;select type="text" placeholder="Selecciona un color"&gt;
+      &lt;!-- Opciones de color aquí --&gt;
+    &lt;/select&gt;
+  &lt;/fieldset&gt;
+  &lt;fieldset&gt;
+    &lt;label class="label" for="size"&gt;Tamaño&lt;/label&gt;
+    &lt;select type="text" placeholder="Selecciona un tamaño"&gt;
+      &lt;!-- Opciones de tamaño aquí --&gt;
+    &lt;/select&gt;
+  &lt;/fieldset&gt;
+&lt;/form&gt;</code>
+</code></pre><ol><li><p><b>Añadir Descripción Detallada del Producto:</b></p><ul><li><p>Crea un <code>&lt;div&gt;</code> para la descripción detallada.</p></li><li><p>Incluye una etiqueta <code>&lt;span&gt;</code> o <code>&lt;p&gt;</code> para un título de la sección como "Descripción", y luego usa elementos <code>&lt;p&gt;</code> para el texto real de la descripción.</p></li><li><p>Ejemplo:</p><p>&lt;div class="description"&gt;  &lt;span class="label"&gt;Descripción&lt;/span&gt;  &lt;p&gt;Texto detallado del producto...&lt;/p&gt;  &lt;!-- Agregar más párrafos según sea necesario --&gt;&lt;/div&gt;</p></li></ul></li></ol><h3>3. Aplicando Estilos al Bloque de Descripción</h3><p>Enfocaremos nuestra atención en los estilos CSS para hacer que el bloque de descripción sea visualmente atractivo y coherente con el diseño general del sitio.</p><ol><li><p><b>Estilizar el Título del Producto:</b></p><ul><li><p>En tu archivo CSS, busca o crea la clase correspondiente al título dentro del bloque de descripción, por ejemplo, <code>.product-description-block .title</code>.</p></li><li><p>Aplica estilos para el color, tamaño de fuente, peso de la fuente y cualquier otra propiedad que desees para hacer el título destacado y legible en función del prototipo original.</p></li><li><p>Ejemplo:</p></li></ul></li></ol><pre><code><code>.product-description-block .title {
+  color: #333; /* Elige un color adecuado */
+  font-size: 24px; /* Ajusta el tamaño según sea necesario */
+  font-weight: bold;
+  margin-top: 0;
+  word-wrap: break-word;
+}</code>
+</code></pre><ol><li><p><b>Estilizar los Selectores de Opciones:</b></p><ul><li><p>Estiliza el formulario de selección para que sea coherente con el diseño general del sitio.</p></li><li><p>Asegúrate de que los <code>&lt;select&gt;</code> sean fáciles de identificar y usar. Puedes cambiar el tamaño, el borde, el fondo, etc.</p></li><li><p>Ejemplo:</p></li></ul></li></ol><pre><code><code>.product-description-block .selector fieldset {
+  border: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}</code></code></pre><pre><code><code>.product-description-block .selector select {
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 0 10px;
+}</code>
+</code></pre><ol><li><p><b>Estilizar la Descripción del Producto:</b></p><ul><li><p>Estiliza el bloque de descripción para que sea fácil de leer. Esto incluye ajustar el tamaño de la fuente, el color, el espaciado entre líneas y los márgenes.</p></li><li><p>Ejemplo:</p></li></ul></li></ol><pre><code><code>.product-description-block .description {
+  font-size: 14px;
+  line-height: 20px;
+}
+</code></code></pre><hr><h2><u>✅ Actividades finalizadas</u></h2><ul><li><p> Agregando Flexbox a las Columnas</p></li><li><p> Estructurando el Bloque de Descripción del Producto</p></li><li><p> Aplicando Estilos al Bloque de Descripción</p></li></ul><hr><h2><u>💼 Información complementaria</u></h2><p>Este paso se centra en la aplicación práctica de conceptos de diseño web para mejorar la experiencia del usuario. Al finalizar, tendrás un bloque de descripción de producto bien diseñado y estilizado.</p><p>Para profundizar en los conceptos aprendidos en este paso, considera visitar los siguientes recursos:</p><ul><li><p><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="noopener noreferrer" title="CSS Tricks - A Complete Guide to Flexbox">CSS Tricks - A Complete Guide to Flexbox</a></p></li><li><p><a href="https://webdesign.tutsplus.com/" target="_blank" rel="noopener noreferrer" title="Web Design Tutorials by Envato Tuts+">Web Design Tutorials by Envato Tuts+</a></p></li></ul></div></div>
+  <span></span> <!-- for IntersectionObserver -->
+  
+  
+  
+  
+
+
+<style id="note-styling">
+    .note {
+      position: absolute;
+      z-index: 10;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: inherit;
+      padding: 5px;
+      min-width: 32px;
+      min-height: 32px;
+    }
+    .note:focus {
+      z-index: 11;
+    }
+    .note[type="0"] {
+      background-color: #fff740;
+      color: #2c2c2d;
+    }
+    .note[type="0"]::placeholder {
+      color: #868226;
+    }
+    .note[type="1"] {
+      background-color: #feff9c;
+      color: #2c2c2d;
+    }
+    .note[type="1"]::placeholder {
+      color: #6d6d3d;
+    }
+    .note[type="2"] {
+      background-color: #ff65a3;
+      color: #2c2c2d;
+    }
+    .note[type="2"]::placeholder {
+      color: #65263f;
+    }
+    .note[type="3"] {
+      background-color: #ff7eb9;
+      color: #2c2c2d;
+    }
+    .note[type="3"]::placeholder {
+      color: #562b3f;
+    }
+    .note[type="4"] {
+      background-color: #7afcff;
+      color: #295c5d;
+    }
+    .note[type="4"]::placeholder {
+      color: #377677;
+    }</style></body><style>body {
+      font-size:  15px;
+      font-family: Helvetica, Arial, sans-serif;
+      width: 600px;
+    }
+    p {
+      text-align: justify
+    }
+    .page {
+      line-height: 22.5px;
+      column-count: unset;
+    }
+    h1, h2, h3 {
+      line-height: initial;
+    }</style></html>
